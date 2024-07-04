@@ -16,7 +16,7 @@
   "operation-type": "bulk",
   "corpora": "cohere-initial-indexing",
   "bulk-size": {{initial_indexing_bulk_size | default(500)}},
-  "ingest-percentage": {{initial_indexing_ingest_percentage | default(100)}}
+  "ingest-percentage": {{initial_indexing_ingest_percentage | default(83.4)}}
 },
 {
   "name": "parallel-documents-indexing",
