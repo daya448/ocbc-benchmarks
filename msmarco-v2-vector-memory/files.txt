@@ -13,4 +13,11 @@ cohere-documents-04-1k.json.bz2
 cohere-documents-04-1k.json.bz2
 cohere-documents-04.json
 cohere-documents-04.json.bz2
-
+cohere-documents-05-1k.json.bz2
+cohere-documents-05-1k.json.bz2
+cohere-documents-05.json
+cohere-documents-05.json.bz2
+cohere-documents-06-1k.json.bz2
+cohere-documents-06-1k.json.bz2
+cohere-documents-06.json
+cohere-documents-06.json.bz2
