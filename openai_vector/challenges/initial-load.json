@@ -7,7 +7,7 @@
         "name": "delete-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-msmarco-v2",
+          "path": "/_snapshot/vdb910-openai",
           "method": "DELETE"
         }
       },
@@ -51,7 +51,7 @@
         "name": "set-refresh-rate",
         "operation": {
           "operation-type": "raw-request",
-          "path": "vdb910-msmarco-v2/_settings",
+          "path": "vdb910-openai/_settings",
           "method": "PUT",
           "body": {
             "index": {
@@ -64,10 +64,10 @@
         "name": "create-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2",
+          "path": "/_snapshot/vdb910-openai/vdb910-openai",
           "method": "PUT",
           "body": {
-            "indices": "vdb910-msmarco-v2"
+            "indices": "vdb910-openai"
           }
         }
       }

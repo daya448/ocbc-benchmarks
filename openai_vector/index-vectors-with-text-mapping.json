@@ -9,6 +9,9 @@
     {%- endif -%}{# non-serverless-index-settings-marker-end #}
   },
   "mappings": {
+    "_source": {
+      "excludes": [ "emb" ]
+    },
     "properties": {
       "docid": {
         "type": "keyword"

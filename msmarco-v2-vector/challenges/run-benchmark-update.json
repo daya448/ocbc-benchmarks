@@ -1,0 +1,51 @@
+{
+  "name": "run-benchmark-update",
+  "default": true,
+  "description": "Challenge to close, restore, and benchmark index with UPDATE operations.",
+  "schedule": [
+    {
+      "name": "close-benchmark-index",
+      "operation": {
+        "operation-type": "raw-request",
+        "path": "/vdb910-msmarco-v2/_close",
+        "method": "POST"
+      }
+    },
+    {
+      "name": "restore-snapshot",
+      "operation": {
+        "operation-type": "raw-request",
+        "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2/_restore",
+        "method": "POST",
+        "body": {
+          "indices": "vdb910-msmarco-v2"
+        }
+      }
+    },
+    {
+      "name": "check-cluster-health",
+      "operation": {
+        "operation-type": "check-cluster-health"
+      }
+    },
+    {
+      "name": "update-index",
+      "operation": "update-index"
+    },
+    {
+      "name": "vector-search-knn-10-100-multiple-clients",
+      "operation": "knn-search-10-100",
+      "warmup-iterations": 100,
+      "target-throughput": 150,
+      "iterations": 10000,
+      "clients": {
+        { standalone_search_clients | default(8) | int
+        }
+      },
+      "iterations": {
+        { standalone_search_iterations | default(10000) | int
+        }
+      }
+    }
+  ]
+}

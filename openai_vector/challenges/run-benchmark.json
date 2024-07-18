@@ -7,7 +7,7 @@
         "name": "close-benchmark-index",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/vdb910-msmarco-v2/_close",
+          "path": "/vdb910-openai/_close",
           "method": "POST"
         }
       },
@@ -15,11 +15,28 @@
         "name": "restore-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2/_restore",
+          "path": "/_snapshot/vdb910-openai/vdb910-openai/_restore",
           "method": "POST",
           "body": {
-            "indices": "vdb910-msmarco-v2"
+            "indices": "vdb910-openai"
           }
+        }
+      },
+      {
+        "name": "check-cluster-health",
+        "operation": "check-cluster-health"
+      },
+      {
+        "name": "wait-until-merges-finish-after-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "_all.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
         }
       },
       {

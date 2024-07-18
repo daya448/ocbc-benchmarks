@@ -9,8 +9,8 @@
   ],
   "indices": [
     {
-      "name": "msmarco-v2",
-      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+      "name": "vdb910-msmarco-v2",
+      "body": "index-{{ mapping_type | default("vectors-with-text") }}-mapping.json"
     }
   ],
   "corpora": [
@@ -32,6 +32,12 @@
         },
         {
           "source-file": "cohere-documents-03.json.bz2",
+          "document-count": 3000000,
+          "compressed-bytes": 24333676455,
+          "uncompressed-bytes": 69357935898
+        },
+        {
+          "source-file": "cohere-documents-04.json.bz2",
           "document-count": 3000000,
           "compressed-bytes": 24333676455,
           "uncompressed-bytes": 69357935898
