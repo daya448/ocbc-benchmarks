@@ -1,0 +1,61 @@
+{
+    "name": "initial-load",
+    "default": false,
+    "description": "Custom challenge with various operations including snapshot management and bulk indexing.",
+    "schedule": [
+      {
+        "name": "delete-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910-msmarco-v2",
+          "method": "DELETE"
+        }
+      },
+      {
+        "operation": {
+          "operation-type": "delete-index"
+        }
+      },
+      {
+        "name": "index-documents",
+        "operation": {
+          "operation-type": "bulk",
+          "bulk-size": 5000,
+          "total-documents": 10000000,
+          "ingest-percentage": 100
+        }
+      },
+      {
+        "name": "refresh-index",
+        "operation": {
+          "operation-type": "refresh",
+          "request-timeout": 1000,
+          "include-in-reporting": true
+        }
+      },
+      {
+        "name": "set-refresh-rate",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_settings",
+          "method": "PUT",
+          "body": {
+            "index": {
+              "refresh_interval": "60s"
+            }
+          }
+        }
+      },
+      {
+        "name": "create-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2",
+          "method": "PUT",
+          "body": {
+            "indices": "vdb910-msmarco-v2"
+          }
+        }
+      }
+    ]
+  }

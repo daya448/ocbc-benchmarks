@@ -6,7 +6,7 @@
   "indices": [
     {
       "name": "cohere",
-      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+      "body": "index-{{ mapping_type | default("vectors-with-text") }}-mapping.json"
     }
   ],
   "corpora": [

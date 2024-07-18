@@ -1,0 +1,75 @@
+{
+    "name": "index-and-search-benchmark",
+    "default": false,
+    "description": "Challenge to close, restore, and benchmark index with specified operations.",
+    "schedule": [
+      {
+        "name": "close-benchmark-index",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/vdb910-msmarco-v2/_close",
+          "method": "POST"
+        }
+      },
+      {
+        "name": "restore-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2/_restore",
+          "method": "POST",
+          "body": {
+            "indices": "vdb910-msmarco-v2"
+          }
+        }
+      },
+      {
+        "name": "index-benchmark",
+        "operation": {
+          "operation-type": "bulk",
+          "target-throughput": 150,
+          "warmup-time-period": 300,
+          "time-period": 1800
+        }
+      },
+      {
+        "name": "vector-search-benchmark",
+        "operation": {
+          "operation-type": "search",
+          "index": "vdb910-msmarco-v2",
+          "clients": 10,
+          "target-throughput": 150,
+          "iterations": 10000,
+          "operation-parameters": {
+            "query-type": "knn",
+            "knn-parameters": {
+              "field": "vector",
+              "query_vector": [1, 0, 0, 0, 0]
+            }
+          }
+        }
+      },
+      {
+        "name": "hybrid-search-benchmark",
+        "operation": {
+          "operation-type": "search",
+          "index": "vdb910-msmarco-v2",
+          "clients": 10,
+          "target-throughput": 150,
+          "iterations": 10000,
+          "operation-parameters": {
+            "query-type": "hybrid",
+            "hybrid-parameters": {
+              "text": {
+                "query": "example query",
+                "fields": ["text_field"]
+              },
+              "vector": {
+                "field": "vector",
+                "query_vector": [1, 0, 0, 0, 0]
+              }
+            }
+          }
+        }
+      }
+    ]
+  }

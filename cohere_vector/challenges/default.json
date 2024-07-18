@@ -1,7 +1,7 @@
 {
   "name": "index-and-search",
   "description": "",
-  "default": true,
+  "default": false,
   "schedule": [
     {
       "operation": {

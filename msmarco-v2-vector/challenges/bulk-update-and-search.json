@@ -21,7 +21,7 @@
       }
     },
     {
-      "name": "index-update",
+      "name": "updates-records-index",
       "operation": {
         "operation-type": "bulk",
         "bulk-size": {{bulk_size | default(500)}},
