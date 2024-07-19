@@ -39,7 +39,7 @@
       "target-throughput": 150,
       "iterations": 10000,
       "clients": {
-        { standalone_search_clients | default(8) | int
+        { standalone_search_clients | default(1) | int
         }
       },
       "iterations": {

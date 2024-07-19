@@ -24,7 +24,7 @@
         "name": "initial-documents-indexing",
         "operation": "initial-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(5) | int }}
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
       },
       {
         "name": "refresh-index",

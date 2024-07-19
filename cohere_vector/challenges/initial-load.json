@@ -24,7 +24,7 @@
         "name": "initial-documents-indexing",
         "operation": "initial-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(5) | int }}
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
       },
       {
         "name": "refresh-index",
@@ -35,23 +35,10 @@
         }
       },
       {
-        "name": "wait-until-merges-finish-after-index",
-        "operation": {
-          "operation-type": "index-stats",
-          "index": "_all",
-          "condition": {
-            "path": "_all.total.merges.current",
-            "expected-value": 0
-          },
-          "retry-until-success": true,
-          "include-in-reporting": false
-        }
-      },
-      {
         "name": "set-refresh-rate",
         "operation": {
           "operation-type": "raw-request",
-          "path": "vdb910-cohere/_settings",
+          "path": "/vdb910-cohere/_settings",
           "method": "PUT",
           "body": {
             "index": {
@@ -63,12 +50,22 @@
       {
         "name": "create-snapshot",
         "operation": {
-          "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-cohere/vdb910-cohere",
-          "method": "PUT",
+          "operation-type": "create-snapshot",
+          "repository": "benchmarks_backup",
+          "snapshot": "vdb910-cohere-snapshot",
           "body": {
-            "indices": "vdb910-cohere"
-          }
+            "indices": "vdb910-cohere",
+            "include_global_state": false
+          },
+          "wait_for_completion": false
+        }
+      },
+      {
+        "name": "wait-for-snapshot-create",
+        "operation": {
+          "operation-type": "wait-for-snapshot-create",
+          "repository": "benchmarks_backup",
+          "snapshot": "vdb910-cohere-snapshot"
         }
       }
     ]
