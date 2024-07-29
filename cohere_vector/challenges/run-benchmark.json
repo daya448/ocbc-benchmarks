@@ -15,7 +15,7 @@
         "name": "restore-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-cohere/vdb910-cohere/_restore",
+          "path": "/_snapshot/vdb910/vdb910-cohere/_restore",
           "method": "POST",
           "body": {
             "indices": "vdb910-cohere"

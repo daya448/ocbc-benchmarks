@@ -7,8 +7,9 @@
         "name": "delete-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-openai",
-          "method": "DELETE"
+          "path": "/_snapshot/vdb910/vdb910-openai",
+          "method": "DELETE",
+          "ignore": ["404"]
         }
       },
       {
@@ -63,12 +64,22 @@
       {
         "name": "create-snapshot",
         "operation": {
-          "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910-openai/vdb910-openai",
-          "method": "PUT",
+          "operation-type": "create-snapshot",
+          "repository": "vdb910",
+          "snapshot": "vdb910-openai",
           "body": {
-            "indices": "vdb910-openai"
-          }
+            "indices": "vdb910-openai",
+            "include_global_state": false
+          },
+          "wait_for_completion": false
+        }
+      },
+      {
+        "name": "wait-for-snapshot-create",
+        "operation": {
+          "operation-type": "wait-for-snapshot-create",
+          "repository": "vdb910",
+          "snapshot": "vdb910-openai"
         }
       }
     ]

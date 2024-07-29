@@ -15,7 +15,7 @@
       "name": "restore-snapshot",
       "operation": {
         "operation-type": "raw-request",
-        "path": "/_snapshot/vdb910-msmarco-v2/vdb910-msmarco-v2/_restore",
+        "path": "/_snapshot/vdb910/vdb910-msmarco-v2/_restore",
         "method": "POST",
         "body": {
           "indices": "vdb910-msmarco-v2"
