@@ -7,7 +7,7 @@
         "name": "delete-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910/vdb910-msmarco-v2",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-msmarco-v2",
           "method": "DELETE",
           "ignore": ["404"]
         }
@@ -65,7 +65,7 @@
         "name": "create-snapshot",
         "operation": {
           "operation-type": "create-snapshot",
-          "repository": "vdb910",
+          "repository": "vdb910_benchmarks_backup_repo",
           "snapshot": "vdb910-msmarco-v2",
           "body": {
             "indices": "vdb910-msmarco-v2",
@@ -78,7 +78,7 @@
         "name": "wait-for-snapshot-create",
         "operation": {
           "operation-type": "wait-for-snapshot-create",
-          "repository": "vdb910",
+          "repository": "vdb910_benchmarks_backup_repo",
           "snapshot": "vdb910-msmarco-v2"
         }
       }
