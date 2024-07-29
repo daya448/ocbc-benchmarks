@@ -39,8 +39,8 @@
         {
           "source-file": "cohere-documents-04.json.bz2",
           "document-count": 3000000,
-          "compressed-bytes": 24333676455,
-          "uncompressed-bytes": 69357935898
+          "compressed-bytes": 24327754482,
+          "uncompressed-bytes": 69387568508
         }
       ]
     },
