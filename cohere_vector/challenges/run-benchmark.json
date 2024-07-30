@@ -23,6 +23,17 @@
         }
       },
       {
+        "name": "check-cluster-health",
+        "operation": {
+          "operation-type": "cluster-health"
+          "request-params": {
+            "wait_for_status": "green",
+            "wait_for_active_shards": "true"
+          },
+          "retry-until-success": true
+        }
+      },
+      {
         "name": "index-benchmark",
         "operation": "index-benchmark",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
