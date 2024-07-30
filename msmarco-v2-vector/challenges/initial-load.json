@@ -25,7 +25,7 @@
         "name": "initial-documents-indexing",
         "operation": "initial-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(8) | int }}
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(16) | int }}
       },
       {
         "name": "refresh-index",
@@ -52,7 +52,7 @@
         "name": "set-refresh-rate",
         "operation": {
           "operation-type": "raw-request",
-          "path": "vdb910-msmarco-v2/_settings",
+          "path": "/vdb910-msmarco-v2/_settings",
           "method": "PUT",
           "body": {
             "index": {
