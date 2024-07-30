@@ -25,7 +25,7 @@
       {
         "name": "check-cluster-health",
         "operation": {
-          "operation-type": "cluster-health"
+          "operation-type": "cluster-health",
           "request-params": {
             "wait_for_status": "green",
             "wait_for_active_shards": "true"
