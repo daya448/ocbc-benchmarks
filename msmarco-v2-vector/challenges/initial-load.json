@@ -22,10 +22,32 @@
         "operation": "create-index"
       },
       {
+        "name": "set-id-pipeline",
+        "operation-type": "put-pipeline",
+        "id": "set_id_pipeline",
+        "body": {
+          "description": "Sets _id to docid",
+          "processors": [
+            {
+              "description": "Set _id to docid",
+              "processors": [
+                {
+                  "set": {
+                    "field": "_id",
+                    "value": "{{docid}}"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
         "name": "initial-documents-indexing",
         "operation": "initial-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(16) | int }}
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }},
+        "pipeline": "set_id_pipeline"
       },
       {
         "name": "refresh-index",

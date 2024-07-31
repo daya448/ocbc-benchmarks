@@ -40,6 +40,19 @@
       "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
     },
     {
+      "name": "wait-until-merges-finish-after-index",
+      "operation": {
+        "operation-type": "index-stats",
+        "index": "_all",
+        "condition": {
+          "path": "_all.total.merges.current",
+          "expected-value": 0
+        },
+        "retry-until-success": true,
+        "include-in-reporting": false
+      }
+    },
+    {
       "name": "vector-search-knn-10-100-multiple-clients",
       "operation": "knn-search-10-100-20",
       "warmup-iterations": 100,
