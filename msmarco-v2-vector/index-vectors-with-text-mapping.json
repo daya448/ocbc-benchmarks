@@ -9,7 +9,7 @@
     "index.number_of_replicas": {{number_of_replicas | default(0)}},
     "refresh_interval": "-1",
     {%- endif -%}{# non-serverless-index-settings-marker-end #}
-    index.default_pipeline": "set_id_pipeline"
+    "index.default_pipeline": "set_id_pipeline"
   },
   "mappings": {
     "_source": {
