@@ -1,13 +1,15 @@
 {
   "settings": {
+
     {# non-serverless-index-settings-marker-start #}{%- if build_flavor != "serverless" or serverless_operator == true -%}
       {% if preload_pagecache %}
     "index.store.preload": [ "vec", "vex", "vem"],
       {% endif %}
     "index.number_of_shards": {{number_of_shards | default(2)}},
     "index.number_of_replicas": {{number_of_replicas | default(0)}},
-    "refresh_interval": "-1"
+    "refresh_interval": "-1",
     {%- endif -%}{# non-serverless-index-settings-marker-end #}
+    index.default_pipeline": "set_id_pipeline"
   },
   "mappings": {
     "_source": {

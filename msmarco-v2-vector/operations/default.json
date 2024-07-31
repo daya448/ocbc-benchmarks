@@ -16,8 +16,7 @@
   "operation-type": "bulk",
   "corpora": "msmarco-v2-initial-indexing",
   "bulk-size": {{initial_indexing_bulk_size | default(500)}},
-  "ingest-percentage": {{initial_indexing_ingest_percentage | default(83)}},
-  "pipeline": "set_id_pipeline"
+  "ingest-percentage": {{initial_indexing_ingest_percentage | default(83)}}
 },
 {
   "name": "index-benchmark",

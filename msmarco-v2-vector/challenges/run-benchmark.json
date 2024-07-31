@@ -34,13 +34,7 @@
       }
     },
     {
-      "name": "index-benchmark",
-      "operation": "index-benchmark",
-      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
-    },
-    {
-      "name": "wait-until-merges-finish-after-index",
+      "name": "wait-until-merges-finish-index",
       "operation": {
         "operation-type": "index-stats",
         "index": "_all",
@@ -69,6 +63,12 @@
       "iterations": 10000,
       "clients": {{ standalone_search_clients | default(1) | int }},
       "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "index-benchmark",
+      "operation": "index-benchmark",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
     }
   ]
 }
