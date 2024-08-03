@@ -28,7 +28,7 @@
         "operation-type": "cluster-health",
         "request-params": {
           "wait_for_status": "green",
-          "wait_for_active_shards": "true"
+          "wait_for_active_shards": "all"
         },
         "retry-until-success": true
       }
