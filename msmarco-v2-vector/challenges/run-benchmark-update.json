@@ -24,9 +24,7 @@
     },
     {
       "name": "check-cluster-health",
-      "operation": {
-        "operation-type": "check-cluster-health"
-      }
+      "operation":  "check-cluster-health"      
     },
     {
       "name": "update-index",
