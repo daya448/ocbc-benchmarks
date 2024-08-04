@@ -52,7 +52,7 @@
       "warmup-time-period": 60,
       "target-throughput": 150,
       "time-period": 1800,
-      "clients": {{ standalone_search_clients | default(1) | int }}
+      "clients": {{ standalone_search_clients | default(4) | int }}
     },
     {
       "name": "index-benchmark",

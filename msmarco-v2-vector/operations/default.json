@@ -16,7 +16,8 @@
   "operation-type": "bulk",
   "corpora": "msmarco-v2-initial-indexing",
   "bulk-size": {{initial_indexing_bulk_size | default(500)}},
-  "ingest-percentage": {{initial_indexing_ingest_percentage | default(83)}}
+  "ingest-percentage": {{initial_indexing_ingest_percentage | default(83)}},
+  "pipeline": "set_id_pipeline"
 },
 {
   "name": "index-benchmark",
@@ -37,7 +38,8 @@
   "conflicts": "{{conflicts | default('sequential')}}",
   "on-conflict": "{{on_conflict | default('update')}}",
   "conflict-probability": {{conflict_probability | default(50)}},
-  "recency": {{recency | default(0)}}
+  "recency": {{recency | default(0)}},
+  "pipeline": "set_id_pipeline"
 },
 {
   "name": "parallel-documents-indexing",

@@ -13,6 +13,26 @@
         }
       },
       {
+        "name": "Add _id pipeline",
+          "operation": {
+          "operation-type": "put-pipeline",
+          "id": "set_id_pipeline",
+          "body": {
+            "description": "Set _id to docid",
+            "processors": [
+              {
+                "set": {
+                  "field": "_id",
+                  {% raw %}
+                  "value": "{{docid}}"
+                  {% endraw %}
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
         "operation": {
           "operation-type": "delete-index"
         }
