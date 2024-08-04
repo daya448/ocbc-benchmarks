@@ -52,7 +52,7 @@
         "warmup-iterations": 100,
         "target-throughput": 150,
         "iterations": 10000,
-        "clients": {{ standalone_search_clients | default(1) | int }},
+        "clients": {{ standalone_search_clients | default(4) | int }},
         "iterations": {{ standalone_search_iterations | default(10000) | int }}
       },
       {
