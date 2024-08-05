@@ -1,22 +1,20 @@
 {% import "rally.helpers" as rally with context %}
-
+{% set _base_url = (base_url | default("https://rally-tracks.elastic.co/cohere-msmarco-v2-embed-english-v3")) %}
 {
   "version": 2,
   "description": "Benchmark for vector search with msmarco-v2 passage data",
   "dependencies": [
-    "pytrec_eval==0.5",
-    "numpy"
   ],
   "indices": [
     {
-      "name": "msmarco-v2",
-      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+      "name": "vdb910-msmarco-v2",
+      "body": "index-{{ mapping_type | default("vectors-with-text") }}-mapping.json"
     }
   ],
   "corpora": [
     {
       "name": "msmarco-v2-initial-indexing",
-      "base-url": "https://rally-tracks.elastic.co/cohere-msmarco-v2-embed-english-v3",
+      "base-url": "{{_base_url}}",
       "documents": [
         {
           "source-file": "cohere-documents-01.json.bz2",
@@ -35,12 +33,18 @@
           "document-count": 3000000,
           "compressed-bytes": 24333676455,
           "uncompressed-bytes": 69357935898
+        },
+        {
+          "source-file": "cohere-documents-04.json.bz2",
+          "document-count": 3000000,
+          "compressed-bytes": 24327754482,
+          "uncompressed-bytes": 69387568508
         }
       ]
     },
     {
       "name": "msmarco-v2-parallel-indexing",
-      "base-url": "https://rally-tracks.elastic.co/cohere-msmarco-v2-embed-english-v3",
+      "base-url": "{{_base_url}}",
       "documents": [
         {
           "source-file": "cohere-documents-47.json.bz2",

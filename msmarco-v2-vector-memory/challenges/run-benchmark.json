@@ -1,0 +1,200 @@
+{
+  "name": "in-memory vs on-disk benchmark",
+  "default": true,
+  "description": "Challenge to delete index, run initial and incremental ingestion, refresh index, and perform search benchmarks.",
+  "schedule": [
+    {
+      "name": "delete-benchmark-index",
+      "operation": {
+        "operation-type": "delete-index",
+        "index": "vdb910-memory-benchmark"
+      }
+    },
+    {
+      "name": "check-cluster-health",
+      "operation": {
+        "operation-type": "check-cluster-health"
+      }
+    },
+    {
+      "name": "initial-documents-indexing-6M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": {{ initial_ingestion_documents | default(6000000) | int }}
+    },
+    {
+      "name": "refresh-after-initial-ingestion",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-6M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-7M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 1000000
+    },
+    {
+      "name": "refresh-after-incremental-load-7M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-7M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-8M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 1000000
+    },
+    {
+      "name": "refresh-after-incremental-load-8M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-8M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-9M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 1000000
+    },
+    {
+      "name": "refresh-after-incremental-load-9M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-9M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-10M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 1000000
+    },
+    {
+      "name": "refresh-after-incremental-load-10M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-10M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-12M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 2000000
+    },
+    {
+      "name": "refresh-after-incremental-load-12M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-12M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-14M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 2000000
+    },
+    {
+      "name": "refresh-after-incremental-load-14M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-14M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-16M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 2000000
+    },
+    {
+      "name": "refresh-after-incremental-load-16M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-16M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    },
+    {
+      "name": "incremental-load-17M",
+      "operation": "initial-documents-indexing",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }},
+      "total-documents": 1000000
+    },
+    {
+      "name": "refresh-after-incremental-load-17M",
+      "operation": {
+        "operation-type": "refresh"
+      }
+    },
+    {
+      "name": "search-benchmark-after-incremental-load-17M",
+      "operation": "knn-search-10-100-20",
+      "target-throughput": 50,
+      "clients": {{ standalone_search_clients | default(1) | int }},
+      "iterations": {{ standalone_search_iterations | default(10000) | int }}
+    }
+  ]
+}

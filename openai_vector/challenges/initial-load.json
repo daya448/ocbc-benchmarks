@@ -1,0 +1,86 @@
+{
+    "name": "initial-load",
+    "default": false,
+    "description": "Custom challenge with various operations including snapshot management and bulk indexing.",
+    "schedule": [
+      {
+        "name": "delete-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-openai",
+          "method": "DELETE",
+          "ignore": ["404"]
+        }
+      },
+      {
+        "operation": {
+          "operation-type": "delete-index"
+        }
+      },
+      {
+        "name": "create-index",
+        "operation": "create-index"
+      },
+      {
+        "name": "initial-documents-indexing",
+        "operation": "initial-documents-indexing",
+        "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
+      },
+      {
+        "name": "refresh-index",
+        "operation": {
+          "operation-type": "refresh",
+          "request-timeout": 1000,
+          "include-in-reporting": true
+        }
+      },
+      {
+        "name": "wait-until-merges-finish-after-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "_all.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
+        }
+      },
+      {
+        "name": "set-refresh-rate",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "vdb910-openai/_settings",
+          "method": "PUT",
+          "body": {
+            "index": {
+              "refresh_interval": "60s"
+            }
+          }
+        }
+      },
+      {
+        "name": "create-snapshot",
+        "operation": {
+          "operation-type": "create-snapshot",
+          "repository": "vdb910_benchmarks_backup_repo",
+          "snapshot": "vdb910-openai",
+          "body": {
+            "indices": "vdb910-openai",
+            "include_global_state": false
+          },
+          "wait_for_completion": false
+        }
+      },
+      {
+        "name": "wait-for-snapshot-create",
+        "operation": {
+          "operation-type": "wait-for-snapshot-create",
+          "repository": "vdb910_benchmarks_backup_repo",
+          "snapshot": "vdb910-openai"
+        }
+      }
+    ]
+  }

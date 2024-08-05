@@ -1,0 +1,64 @@
+{
+  "name": "run-benchmark",
+  "default": true,
+  "description": "Challenge to close, restore, and benchmark index with specified operations.",
+  "schedule": [
+    {
+      "name": "close-benchmark-index",
+      "operation": {
+        "operation-type": "raw-request",
+        "path": "/vdb910-msmarco-v2/_close",
+        "method": "POST"
+      }
+    },
+    {
+      "name": "restore-snapshot",
+      "operation": {
+        "operation-type": "raw-request",
+        "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-msmarco-v2/_restore",
+        "method": "POST",
+        "body": {
+          "indices": "vdb910-msmarco-v2"
+        }
+      }
+    },
+    {
+      "name": "check-cluster-health",
+      "operation": {
+        "operation-type": "cluster-health",
+        "request-params": {
+          "wait_for_status": "green",
+          "wait_for_active_shards": "all"
+        },
+        "retry-until-success": true
+      }
+    },
+    {
+      "name": "wait-until-merges-finish-index",
+      "operation": {
+        "operation-type": "index-stats",
+        "index": "_all",
+        "condition": {
+          "path": "_all.total.merges.current",
+          "expected-value": 0
+        },
+        "retry-until-success": true,
+        "include-in-reporting": false
+      }
+    },
+    {
+      "name": "vector-search-knn-10-100-multiple-clients",
+      "operation": "knn-search-10-100-20",
+      "warmup-time-period": 60,
+      "target-throughput": 150,
+      "time-period": 1800,
+      "clients": {{ standalone_search_clients | default(4) | int }}
+    },
+    {
+      "name": "index-benchmark",
+      "operation": "index-benchmark",
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
+    }
+  ]
+}
