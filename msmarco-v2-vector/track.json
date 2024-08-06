@@ -43,14 +43,14 @@
       ]
     },
     {
-      "name": "msmarco-v2-parallel-indexing",
+      "name": "msmarco-v2-update-indexing",
       "base-url": "{{_base_url}}",
       "documents": [
         {
-          "source-file": "cohere-documents-47.json.bz2",
-          "document-count": 364198,
-          "compressed-bytes": 2953583160,
-          "uncompressed-bytes": 8421544547
+          "source-file": "cohere-documents-01.json.bz2",
+          "document-count": 3000000,
+          "compressed-bytes": 24341521883,
+          "uncompressed-bytes": 69370756479
         }
       ]
     }
