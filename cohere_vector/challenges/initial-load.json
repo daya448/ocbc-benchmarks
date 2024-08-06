@@ -36,6 +36,19 @@
         }
       },
       {
+        "name": "wait-until-merges-finish-after-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "_all.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
+        }
+      },
+      {
         "name": "set-refresh-rate",
         "operation": {
           "operation-type": "raw-request",
