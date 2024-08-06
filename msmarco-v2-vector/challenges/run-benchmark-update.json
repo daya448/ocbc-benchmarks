@@ -29,6 +29,8 @@
     {
       "name": "update-index",
       "operation": "update-index",
+      "warmup-time-period": 60,
+      "time-period": 1800,
       "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
       "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
     }
