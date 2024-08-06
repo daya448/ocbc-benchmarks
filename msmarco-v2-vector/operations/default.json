@@ -33,8 +33,8 @@
   "name": "update-index",
   "operation-type": "bulk",
   "corpora": "msmarco-v2-update-indexing",
-  "bulk-size": {{bulk_size | default(500)}},
-  "ingest-percentage": {{ingest_percentage | default(50)}},
+  "bulk-size": {{bulk_size | default(100)}},
+  "ingest-percentage": {{ingest_percentage | default(1)}},
   "pipeline": "set_id_pipeline"
 },
 {
