@@ -31,7 +31,7 @@
   "name": "update-index",
   "operation-type": "bulk","warmup-time-period": 60,
   "time-period": 1800,
-  "corpora": "msmarco-v2-update-indexing",
+  "corpora": "msmarco-v2-initial-indexing",
   "bulk-size": {{bulk_size | default(30)}},
   "pipeline": "set_id_pipeline"
 },

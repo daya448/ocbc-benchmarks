@@ -21,12 +21,10 @@
 {
   "name": "index-benchmark",
   "operation-type": "bulk",
-  "target-throughput": 150,
   "warmup-time-period": 300,
   "time-period": 1800,
   "corpora": "cohere-initial-indexing",
-  "bulk-size": {{initial_indexing_bulk_size | default(500)}},
-  "ingest-percentage": {{initial_indexing_ingest_percentage | default(1)}}
+  "bulk-size": {{initial_indexing_bulk_size | default(30)}}
 },
 {
   "name": "parallel-documents-indexing",
