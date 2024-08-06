@@ -22,19 +22,17 @@
 {
   "name": "index-benchmark",
   "operation-type": "bulk",
-  "target-throughput": 150,
-  "warmup-time-period": 300,
+  "warmup-time-period": 60,
   "time-period": 1800,
   "corpora": "msmarco-v2-initial-indexing",
-  "bulk-size": {{initial_indexing_bulk_size | default(500)}},
-  "ingest-percentage": {{initial_indexing_ingest_percentage | default(1)}}
+  "bulk-size": {{initial_indexing_bulk_size | default(30)}}
 },
 {
   "name": "update-index",
-  "operation-type": "bulk",
+  "operation-type": "bulk","warmup-time-period": 60,
+  "time-period": 1800,
   "corpora": "msmarco-v2-update-indexing",
-  "bulk-size": {{bulk_size | default(100)}},
-  "ingest-percentage": {{ingest_percentage | default(1)}},
+  "bulk-size": {{bulk_size | default(30)}},
   "pipeline": "set_id_pipeline"
 },
 {

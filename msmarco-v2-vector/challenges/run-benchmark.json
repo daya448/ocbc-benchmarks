@@ -57,7 +57,7 @@
     {
       "name": "index-benchmark",
       "operation": "index-benchmark",
-      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(60) | int }},
       "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
     }
   ]

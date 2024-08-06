@@ -29,8 +29,8 @@
     {
       "name": "update-index",
       "operation": "update-index",
-      "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }},
-      "target-throughput": 2
+      "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
     }
   ]
 }
