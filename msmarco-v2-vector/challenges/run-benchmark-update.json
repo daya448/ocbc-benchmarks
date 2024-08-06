@@ -28,7 +28,8 @@
     },
     {
       "name": "update-index",
-      "operation": "update-index"
+      "operation": "update-index",
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
     }
   ]
 }
