@@ -39,20 +39,20 @@
         {
           "source-file": "cohere-documents-04.json.bz2",
           "document-count": 3000000,
-          "compressed-bytes": 24333676455,
-          "uncompressed-bytes": 69357935898
+          "compressed-bytes": 24327754482,
+          "uncompressed-bytes": 69387568508
         },
         {
           "source-file": "cohere-documents-05.json.bz2",
           "document-count": 3000000,
-          "compressed-bytes": 24333676455,
-          "uncompressed-bytes": 69357935898
+          "compressed-bytes": 24327151939,
+          "uncompressed-bytes": 69365547764
         },
         {
           "source-file": "cohere-documents-06.json.bz2",
           "document-count": 3000000,
-          "compressed-bytes": 24333676455,
-          "uncompressed-bytes": 69357935898
+          "compressed-bytes": 24304245317,
+          "uncompressed-bytes": 69376763339
         }
       ]
     },
