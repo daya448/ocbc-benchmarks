@@ -1,0 +1,29 @@
+{
+    "name": "search",
+    "default": false,
+    "description": "Verify search performance after new documents",
+    "schedule": [
+      {
+        "name": "wait-until-merges-finish-after-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "indices.vdb910-cohere.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
+        }
+      },
+      {
+        "name": "search-benchmark-after-incremental-load-6M",
+        "operation": "knn-search-10-100-20",
+        "target-throughput": 50,
+        "clients": {{ standalone_search_clients | default(1) | int }},
+        "warmup-time-period": 60,
+        "target-throughput": 150,
+        "time-period": 600,
+      }
+    ]
+  }

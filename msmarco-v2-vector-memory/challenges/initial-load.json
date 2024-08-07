@@ -7,7 +7,7 @@
         "name": "delete-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-openai",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-memory-benchmark",
           "method": "DELETE",
           "ignore": ["404"]
         }
@@ -22,10 +22,11 @@
         "operation": "create-index"
       },
       {
-        "name": "initial-documents-indexing",
+        "name": "initial-documents-indexing-6M",
         "operation": "initial-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }},
+        "total-documents": {{ initial_ingestion_documents | default(6000000) | int }}
       },
       {
         "name": "refresh-index",
@@ -49,26 +50,13 @@
         }
       },
       {
-        "name": "set-refresh-rate",
-        "operation": {
-          "operation-type": "raw-request",
-          "path": "/vdb910-openai/_settings",
-          "method": "PUT",
-          "body": {
-            "index": {
-              "refresh_interval": "60s"
-            }
-          }
-        }
-      },
-      {
         "name": "create-snapshot",
         "operation": {
           "operation-type": "create-snapshot",
           "repository": "vdb910_benchmarks_backup_repo",
-          "snapshot": "vdb910-openai",
+          "snapshot": "vdb910-msmarco-v2",
           "body": {
-            "indices": "vdb910-openai",
+            "indices": "vdb910-memory-benchmark",
             "include_global_state": false
           },
           "wait_for_completion": false
@@ -79,7 +67,7 @@
         "operation": {
           "operation-type": "wait-for-snapshot-create",
           "repository": "vdb910_benchmarks_backup_repo",
-          "snapshot": "vdb910-openai"
+          "snapshot": "vdb910-memory-benchmark"
         }
       }
     ]
