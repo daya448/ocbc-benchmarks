@@ -49,7 +49,7 @@
       {
         "name": "vector-search-knn-10-100-multiple-clients",
         "operation": "knn-search-10-100",
-        "warmup-time-period": 60,
+        "warmup-time-period": 120,
         "target-throughput": 150,
         "time-period": 1800,
         "clients": {{ standalone_search_clients | default(4) | int }}
