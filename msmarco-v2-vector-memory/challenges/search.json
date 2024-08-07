@@ -9,7 +9,7 @@
           "operation-type": "index-stats",
           "index": "_all",
           "condition": {
-            "path": "indices.vdb910-cohere.total.merges.current",
+            "path": "indices.vvdb910-memory-benchmark.total.merges.current",
             "expected-value": 0
           },
           "retry-until-success": true,
@@ -23,7 +23,7 @@
         "clients": {{ standalone_search_clients | default(1) | int }},
         "warmup-time-period": 60,
         "target-throughput": 150,
-        "time-period": 600,
+        "time-period": 600
       }
     ]
   }
