@@ -54,7 +54,7 @@
         "operation": {
           "operation-type": "create-snapshot",
           "repository": "vdb910_benchmarks_backup_repo",
-          "snapshot": "vdb910-msmarco-v2",
+          "snapshot": "vdb910-memory-benchmark",
           "body": {
             "indices": "vdb910-memory-benchmark",
             "include_global_state": false
