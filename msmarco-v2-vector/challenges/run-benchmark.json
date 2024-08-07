@@ -59,7 +59,7 @@
       "operation": "index-benchmark",
       "warmup-time-period": 60,
       "time-period": 1800,
-      "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }}
     }
   ]
 }
