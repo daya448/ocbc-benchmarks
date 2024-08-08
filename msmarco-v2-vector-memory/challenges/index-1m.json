@@ -5,10 +5,9 @@
     "schedule": [
       {
         "name": "incremental-load-1M",
-        "operation": "initial-documents-indexing",
+        "operation": "additional-documents-indexing",
         "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
         "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }},
-        "total-documents": 1000000
       },
       {
         "name": "refresh-after-incremental-load-1M",
