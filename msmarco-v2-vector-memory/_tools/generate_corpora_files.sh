@@ -6,6 +6,9 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+echo `date`
+echo "Starting processing"
+
 DIR=$1
 
 # Create the tmp directory if it doesn't exist
@@ -21,7 +24,7 @@ done
 
 # Loop through all files in DIR/tmp and keep track of iteration number, starting with index 1
 i=1
-for TMP_FILE in "$DIR/msmarco-v2-initial-indexing/tmp"/*; do
+for TMP_FILE in "$DIR/tmp"/*; do
   if [ -f "$TMP_FILE" ]; then
     # Create a directory DIR/msmarco-memory-<i>
     DEST_DIR="$DIR/msmarco-memory-$i"
@@ -40,5 +43,5 @@ done
 
 # Delete the tmp directory
 rm -rf "$DIR/tmp"
-
+echo `date`
 echo "Processing complete."
