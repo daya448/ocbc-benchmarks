@@ -12,7 +12,7 @@ DIR=$1
 mkdir -p "$DIR/tmp"
 
 # Loop through all files in the DIR named cohere-documents-0<n>.json, with <n> between 4 and 6
-for FILE in "$DIR"/cohere-documents-0{4..6}.json; do
+for FILE in "$DIR"/msmarco-v2-initial-indexing/cohere-documents-0{3..6}.json; do
   if [ -f "$FILE" ]; then
     # Split each file into files with 1 million lines under DIR/tmp
     split -l 1000000 "$FILE" "$DIR/tmp/$(basename "$FILE" .json)-"
@@ -21,7 +21,7 @@ done
 
 # Loop through all files in DIR/tmp and keep track of iteration number, starting with index 1
 i=1
-for TMP_FILE in "$DIR/tmp"/*; do
+for TMP_FILE in "$DIR/msmarco-v2-initial-indexing/tmp"/*; do
   if [ -f "$TMP_FILE" ]; then
     # Create a directory DIR/msmarco-memory-<i>
     DEST_DIR="$DIR/msmarco-memory-$i"
