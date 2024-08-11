@@ -11,13 +11,13 @@ def main():
         sys.exit(1)
 
     DIR = sys.argv[1]
-    corpora = []
+    corpora = [None] * 30
 
     for folder in os.listdir(DIR):
         if folder.startswith("msmarco-memory-"):
             i = int(folder.split("-")[-1])
             corpus = {
-                "name": "cohere-initial-indexing",
+                "name": "msmarco-memory-" + str(i),
                 "base-url": "{{_base_url}}"
             }
             documents = []
@@ -38,8 +38,9 @@ def main():
                     documents.append(document)
 
             corpus["documents"] = documents
-            corpora.append(corpus)
+            corpora[i] = corpus
 
+    corpora = [x for x in corpora if x is not None]
     print(json.dumps(corpora, indent=4))
 
 if __name__ == "__main__":
