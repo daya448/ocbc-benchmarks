@@ -41,7 +41,7 @@
       }
     },
     {
-        "name": "wait-until-merges-finish-after-index",
+        "name": "wait-until-merges-finish-after-index-i",
         "operation": {
           "operation-type": "index-stats",
           "index": "_all",
