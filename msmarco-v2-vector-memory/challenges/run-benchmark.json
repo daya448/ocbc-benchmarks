@@ -26,13 +26,13 @@
       "name": "search-benchmark-after-initial-load-6M",
       "operation": "knn-search-10-100-20",
       "target-throughput": 50,
-      "clients": {{ standalone_search_clients | default(2) | int }},
-      "iterations": {{ standalone_search_iterations | default(10000) | int }}
-    }{% for i in range(1, 9) %},
+      "clients": {{ standalone_search_clients | default(4) | int }},
+      "warmup-time-period": 120,
+      "time-period": 300
     {
       "name": "incremental-load-{{i}}M",
       "operation": "incremental-load-{{i}}",
-      "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
+      "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
     },
     {
       "name": "refresh-after-incremental-load-{{i}}M",
