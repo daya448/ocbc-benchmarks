@@ -29,44 +29,128 @@
           "document-count": 3000000,
           "compressed-bytes": 24344084315,
           "uncompressed-bytes": 69372610608
-        },
-        {
-          "source-file": "cohere-documents-03.json.bz2",
-          "document-count": 3000000,
-          "compressed-bytes": 24333676455,
-          "uncompressed-bytes": 69357935898
-        },
-        {
-          "source-file": "cohere-documents-04.json.bz2",
-          "document-count": 3000000,
-          "compressed-bytes": 24327754482,
-          "uncompressed-bytes": 69387568508
-        },
-        {
-          "source-file": "cohere-documents-05.json.bz2",
-          "document-count": 3000000,
-          "compressed-bytes": 24327151939,
-          "uncompressed-bytes": 69365547764
-        },
-        {
-          "source-file": "cohere-documents-06.json.bz2",
-          "document-count": 3000000,
-          "compressed-bytes": 24304245317,
-          "uncompressed-bytes": 69376763339
         }
       ]
     },
     {
-      "name": "msmarco-v2-parallel-indexing",
-      "base-url": "https://rally-tracks.elastic.co/cohere-msmarco-v2-embed-english-v3",
-      "documents": [
-        {
-          "source-file": "cohere-documents-47.json.bz2",
-          "document-count": 364198,
-          "compressed-bytes": 2953583160,
-          "uncompressed-bytes": 8421544547
-        }
-      ]
+        "name": "msmarco-memory-1",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-1.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23127879759
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-2",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-2.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122493461
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-3",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-3.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23107562678
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-4",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-4.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23118698650
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-5",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-5.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23144534764
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-6",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-6.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23124335094
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-7",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-7.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122395641
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-8",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-8.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122666870
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-9",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-9.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23120485253
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-10",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-10.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23123746773
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-11",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-11.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23127660533
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-12",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-12.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23125356033
+            }
+        ]
     }
   ],
   "operations": [

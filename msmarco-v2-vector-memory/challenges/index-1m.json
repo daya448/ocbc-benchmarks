@@ -4,9 +4,13 @@
     "description": "Add 1m docs before next search",
     "schedule": [
       {
-        "name": "incremental-load-1M",
-        "operation": "additional-documents-indexing",
-        "warmup-time-period": {{ initial_indexing_bulk_warmup | default(40) | int }},
+        "operation": {
+          "name": "index-1m",
+          "operation-type": "bulk",
+          "corpora": "msmarco-memory-1",
+          "bulk-size": {{initial_indexing_bulk_size | default(500)}},
+          "ingest-percentage": 100
+        },
         "clients": {{ initial_indexing_bulk_indexing_clients | default(4) | int }}
       },
       {
