@@ -17,22 +17,19 @@ def main():
         if folder.startswith("msmarco-memory-"):
             i = int(folder.split("-")[-1])
             corpus = {
-                "name": "msmarco-memory-" + str(i),
-                "base-url": "{{_base_url}}"
+                "name": "msmarco-memory-" + str(i)
             }
             documents = []
 
             folder_path = os.path.join(DIR, folder)
             for file in os.listdir(folder_path):
-                if file.endswith(".json.bz2"):
+                if file.endswith(".json"):
                     file_path = os.path.join(folder_path, file)
-                    json_file_path = file_path[:-4]  # Remove .bz2 extension
 
                     document = {
                         "source-file": file,
                         "document-count": 1000000,
-                        "compressed-bytes": get_file_size(file_path),
-                        "uncompressed-bytes": get_file_size(json_file_path)
+                        "uncompressed-bytes": get_file_size(file_path)
                     }
 
                     documents.append(document)

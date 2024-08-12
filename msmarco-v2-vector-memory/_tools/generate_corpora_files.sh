@@ -34,9 +34,6 @@ for TMP_FILE in "$DIR/tmp"/*; do
     DEST_FILE="$DEST_DIR/msmarco-memory-documents-$i.json"
     mv "$TMP_FILE" "$DEST_FILE"
 
-    # Compress the file using bzip2 and keep the original file
-    bzip2 -k "$DEST_FILE"
-
     i=$((i + 1))
   fi
 done
