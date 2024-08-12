@@ -28,7 +28,7 @@
           "operation-type": "cluster-health",
           "request-params": {
             "wait_for_status": "green",
-            "wait_for_active_shards": "true"
+            "wait_for_active_shards": "all"
           },
           "retry-until-success": true
         }
@@ -50,7 +50,7 @@
         "name": "vector-search-knn-10-100-multiple-clients",
         "operation": "knn-search-10-100",
         "warmup-time-period": 120,
-        "target-throughput": 150,
+        "target-throughput": 120,
         "time-period": 1800,
         "clients": {{ standalone_search_clients | default(4) | int }}
       },
@@ -59,7 +59,8 @@
         "operation": "index-benchmark",
         "warmup-time-period": 60,
         "time-period": 1800,
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }}
+        "target-throughput": 4,
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
       }
     ]
   }
