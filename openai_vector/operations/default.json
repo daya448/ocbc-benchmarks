@@ -41,6 +41,13 @@
   "num-candidates": 100
 },
 {
+    "name": "hybrid-search-10-100",
+    "operation-type": "search",
+    "param-source": "hybrid-param-source",
+    "k": 10,
+    "num-candidates": 100
+},
+{
   "name": "knn-search-100-1000",
   "operation-type": "search",
   "param-source": "knn-param-source",
