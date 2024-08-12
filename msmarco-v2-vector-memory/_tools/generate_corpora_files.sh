@@ -15,7 +15,7 @@ DIR=$1
 mkdir -p "$DIR/tmp"
 
 # Loop through all files in the DIR named cohere-documents-0<n>.json, with <n> between 4 and 6
-for FILE in "$DIR"/msmarco-v2-initial-indexing/cohere-documents-0{3..6}.json; do
+for FILE in "$DIR"/msmarco-v2-initial-indexing/cohere-documents-0{3..5}.json; do
   if [ -f "$FILE" ]; then
     # Split each file into files with 1 million lines under DIR/tmp
     split -l 1000000 "$FILE" "$DIR/tmp/$(basename "$FILE" .json)-"

@@ -111,46 +111,6 @@
                 "uncompressed-bytes": 23122666870
             }
         ]
-    },
-    {
-        "name": "msmarco-memory-9",
-        "documents": [
-            {
-                "source-file": "msmarco-memory-documents-9.json",
-                "document-count": 1000000,
-                "uncompressed-bytes": 23120485253
-            }
-        ]
-    },
-    {
-        "name": "msmarco-memory-10",
-        "documents": [
-            {
-                "source-file": "msmarco-memory-documents-10.json",
-                "document-count": 1000000,
-                "uncompressed-bytes": 23123746773
-            }
-        ]
-    },
-    {
-        "name": "msmarco-memory-11",
-        "documents": [
-            {
-                "source-file": "msmarco-memory-documents-11.json",
-                "document-count": 1000000,
-                "uncompressed-bytes": 23127660533
-            }
-        ]
-    },
-    {
-        "name": "msmarco-memory-12",
-        "documents": [
-            {
-                "source-file": "msmarco-memory-documents-12.json",
-                "document-count": 1000000,
-                "uncompressed-bytes": 23125356033
-            }
-        ]
     }
   ],
   "operations": [
