@@ -29,6 +29,7 @@
       "clients": {{ standalone_search_clients | default(4) | int }},
       "warmup-time-period": 120,
       "time-period": 300
+    }{% for i in range(1, 9) %},
     {
       "name": "incremental-load-{{i}}M",
       "operation": "incremental-load-{{i}}",
