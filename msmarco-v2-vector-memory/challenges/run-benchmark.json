@@ -4,28 +4,23 @@
   "description": "Challenge to delete index, run initial and incremental ingestion, refresh index, and perform search benchmarks.",
   "schedule": [
     {
-      "name": "delete-benchmark-index",
-      "operation": {
-        "operation-type": "delete-index",
-        "index": "vdb910-memory-benchmark"
-      }
+        "name": "close-benchmark-index",
+        "operation": {
+            "operation-type": "raw-request",
+            "path": "/vdb910-memory-benchmark/_close",
+            "method": "POST"
+        }
     },
     {
-      "name": "check-cluster-health",
-      "operation": {
-        "operation-type": "check-cluster-health"
-      }
-    },
-    {
-      "name": "initial-documents-indexing-6M",
-      "operation": "initial-documents-indexing",
-      "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }}
-    },
-    {
-      "name": "refresh-after-initial-ingestion",
-      "operation": {
-        "operation-type": "refresh"
-      }
+    "name": "restore-snapshot",
+        "operation": {
+            "operation-type": "raw-request",
+            "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-memory-benchmark/_restore",
+            "method": "POST",
+            "body": {
+            "indices": "vdb910-memory-benchmark"
+            }
+        }
     },
     {
       "name": "search-benchmark-after-initial-load-6M",
@@ -44,6 +39,19 @@
       "operation": {
         "operation-type": "refresh"
       }
+    },
+    {
+        "name": "wait-until-merges-finish-after-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "indices.vdb910-memory-benchmark.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
+        }
     },
     {
       "name": "search-benchmark-after-incremental-load-{{i}}M",
