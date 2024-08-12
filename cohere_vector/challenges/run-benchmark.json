@@ -59,7 +59,8 @@
         "operation": "index-benchmark",
         "warmup-time-period": 60,
         "time-period": 1800,
-        "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }}
+        "target-throughput": 5,  
+        "clients": {{ initial_indexing_bulk_indexing_clients | default(1) | int }}
       }
     ]
   }
