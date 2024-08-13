@@ -7,7 +7,7 @@
         "name": "close-benchmark-index",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/vdb910-cohere/_close",
+          "path": "/vdb910-openai/_close",
           "method": "POST"
         }
       },
@@ -15,10 +15,10 @@
         "name": "restore-snapshot",
         "operation": {
           "operation-type": "raw-request",
-          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-cohere/_restore",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-openai/_restore",
           "method": "POST",
           "body": {
-            "indices": "vdb910-cohere"
+            "indices": "vdb910-openai"
           }
         }
       },
