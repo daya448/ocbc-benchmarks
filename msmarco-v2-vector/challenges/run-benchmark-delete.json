@@ -1,0 +1,39 @@
+{
+    "name": "run-benchmark-delete",
+    "default": false,
+    "description": "Challenge to close, restore, and benchmark index with UPDATE operations.",
+    "schedule": [
+      {
+        "name": "close-benchmark-index",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/vdb910-msmarco-v2/_close",
+          "method": "POST"
+        }
+      },
+      {
+        "name": "restore-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-msmarco-v2/_restore",
+          "method": "POST",
+          "body": {
+            "indices": "vdb910-msmarco-v2"
+          }
+        }
+      },
+      {
+        "name": "check-cluster-health",
+        "operation":  "check-cluster-health"
+      },
+      {
+        "name": "bulk-deletes",
+        "operation": "bulk-deletes",
+        "warmup-time-period": 120,
+        "time-period": 1800,
+        "target-throughput": 4,
+        "clients": 2
+      }
+    ]
+  }
+  

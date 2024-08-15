@@ -36,6 +36,13 @@
   "pipeline": "set_id_pipeline"
 },
 {
+    "name": "bulk-deletes",
+    "operation-type": "bulk",
+    "corpora": "msmarco-v2-bulk-delete",
+    "bulk-size": {{bulk_size | default(100)}},
+    "pipeline": "set_id_pipeline"
+  },
+{
   "name": "parallel-documents-indexing",
   "operation-type": "bulk",
   "corpora": "msmarco-v2-parallel-indexing",

@@ -53,7 +53,19 @@
           "uncompressed-bytes": 69370756479
         }
       ]
-    }
+    },
+    {
+        "name": "msmarco-v2-bulk-delete",
+        "documents": [
+          {
+            "source-file": "cohere-deletes-01.json",
+            "includes-action-and-meta-data": true,
+            "document-count": 1500000,
+            "compressed-bytes": 10904885,
+            "uncompressed-bytes": 200485544
+          }
+        ]
+      }
   ],
   "operations": [
     {{ rally.collect(parts="operations/*.json") }}
