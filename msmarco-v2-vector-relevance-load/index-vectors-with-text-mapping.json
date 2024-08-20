@@ -29,6 +29,9 @@
         }
     },
     "mappings": {
+        "_source": {
+            "excludes": [ "emb" ]
+        },
         "properties": {
             "docid": {
                 "type": "keyword"
