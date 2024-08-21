@@ -1,5 +1,5 @@
 {
-    "name": "initial-load",
+    "name": "additional-documents-indexing",
     "default": false,
     "description": "Custom challenge with various operations including snapshot management and bulk indexing.",
     "schedule": [
