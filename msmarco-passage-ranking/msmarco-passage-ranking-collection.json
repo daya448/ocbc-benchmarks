@@ -5,7 +5,13 @@
                 "type":"keyword"
             },
             "text": {
-                "type": "text"
+                "type": "text",
+                "fields": {
+                    "english": {
+                        "type": "text",
+                        "analyzer": "english"
+                    }
+                }
             },
             "text_expansion_elser": {
                 "type": "sparse_vector"

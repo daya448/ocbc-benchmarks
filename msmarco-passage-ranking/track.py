@@ -119,7 +119,7 @@ class QueryParamsSource:
         self._cache = params.get("cache", False)
         self._size = params.get("size", 10)
         self._num_candidates = params.get("num_candidates", 10)
-        self._text_field = params.get("text_field", "text")
+        self._text_field = params.get("text_field", "text.english")
         self._text_expansion_field = params.get("text_expansion_field", "text_expansion_elser")
         self._query_file = params.get("query_source", "queries.json")
         self._query_strategy = params.get("query_strategy", "bm25")
