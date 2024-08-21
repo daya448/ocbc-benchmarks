@@ -73,19 +73,6 @@
         }
       },
       {
-        "name": "set-refresh-rate",
-        "operation": {
-          "operation-type": "raw-request",
-          "path": "/vdb910-msmarco-v2/_settings",
-          "method": "PUT",
-          "body": {
-            "index": {
-              "refresh_interval": "60s"
-            }
-          }
-        }
-      },
-      {
         "name": "create-snapshot",
         "operation": {
           "operation-type": "create-snapshot",

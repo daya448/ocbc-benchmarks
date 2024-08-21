@@ -1,0 +1,20 @@
+{
+    "name": "initial-load",
+    "default": false,
+    "description": "Custom challenge with various operations including snapshot management and bulk indexing.",
+    "schedule": [
+      {
+        "name": "additional-documents-indexing",
+        "operation": "initial-documents-indexing",
+        "clients": 6
+      },
+      {
+        "name": "refresh-index",
+        "operation": {
+          "operation-type": "refresh",
+          "request-timeout": 1000,
+          "include-in-reporting": true
+        }
+      }
+    ]
+  }
