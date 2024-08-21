@@ -44,12 +44,12 @@
       {
         "name": "initial-documents-indexing",
         "operation": "initial-documents-indexing",
-        "clients": 4
+        "clients": 6
       },
       {
         "name": "additional-documents-indexing",
-        "operation": "initial-documents-indexing",
-        "clients": 4
+        "operation": "additional-documents-indexing",
+        "clients": 6
       },
       {
         "name": "refresh-index",
