@@ -5,7 +5,7 @@
     "schedule": [
       {
         "name": "additional-documents-indexing",
-        "operation": "initial-documents-indexing",
+        "operation": "additional-documents-indexing",
         "clients": 6
       },
       {
