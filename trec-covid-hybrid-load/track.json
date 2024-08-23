@@ -1,0 +1,32 @@
+{% import "rally.helpers" as rally with context %}
+{
+  "version": 2,
+  "description": "Load trec covid data",
+  "dependencies": [
+  ],
+  "indices": [
+    {
+      "name": "vdb910-trec-covid",
+      "body": "index-vectors-with-text-mapping.json"
+    }
+  ],
+  "corpora": [
+    {
+      "name": "trec-covid",
+      "documents": [
+        {
+          "source-file": "trec-covid.json.bz2",
+          "document-count": 171332,
+          "compressed-bytes": 24341521883,
+          "uncompressed-bytes": 69370756479
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {{ rally.collect(parts="operations/*.json") }}
+  ],
+  "challenges": [
+    {{ rally.collect(parts="challenges/*.json") }}
+  ]
+}
