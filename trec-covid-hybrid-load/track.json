@@ -17,8 +17,8 @@
         {
           "source-file": "trec-covid.json.bz2",
           "document-count": 171332,
-          "compressed-bytes": 24341521883,
-          "uncompressed-bytes": 69370756479
+          "compressed-bytes": 960636555,
+          "uncompressed-bytes": 3105589825
         }
       ]
     }
