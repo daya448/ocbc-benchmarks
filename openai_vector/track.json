@@ -5,8 +5,8 @@
   "description": "Benchmark for vector search using the OpenAI text-embedding-ada-002 model",
   "indices": [
     {
-      "name": "openai",
-      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+      "name": "vdb910-openai",
+      "body": "index-{{ mapping_type | default("vectors-with-text") }}-mapping.json"
     }
   ],
   "corpora": [

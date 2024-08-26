@@ -1,0 +1,55 @@
+{
+  "name": "create-index",
+  "operation-type": "create-index",
+  "settings": {{index_settings | default({}) | tojson}}
+},
+{
+  "name": "check-cluster-health",
+  "operation-type": "cluster-health",
+  "request-params": {
+    "wait_for_status": "green"
+  },
+  "retry-until-success": true
+},
+{
+  "name": "initial-documents-indexing",
+  "operation-type": "bulk",
+  "corpora": "msmarco-v2-initial-indexing",
+  "bulk-size": {{initial_indexing_bulk_size | default(500)}},
+  "ingest-percentage": 100
+}{% for i in range(1, 9) %},
+{
+    "name": "incremental-load-{{i}}",
+    "operation-type": "bulk",
+    "corpora": "msmarco-memory-{{i}}",
+    "bulk-size": {{initial_indexing_bulk_size | default(500)}},
+    "ingest-percentage": 100
+}{% endfor %}
+{%- set p_search_ops = (search_ops | default([(10, 100, 0),(100, 1000, 0),(10, 100, 20), (100, 1000, 120)]))%}
+{%- for i in range(p_search_ops|length) %},
+{
+  {%- if p_search_ops[i][2] > 0 -%}
+    "name": "knn-search-{{p_search_ops[i][0]}}-{{p_search_ops[i][1]}}-{{p_search_ops[i][2]}}"
+  {%- else -%}
+    "name": "knn-search-{{p_search_ops[i][0]}}-{{p_search_ops[i][1]}}"
+  {%- endif -%},
+  "operation-type": "search",
+  "param-source": "knn-param-source",
+  "k": {{p_search_ops[i][0]}},
+  "num-candidates": {{p_search_ops[i][1]}},
+  "num-rescore": {{p_search_ops[i][2]}}
+},
+{
+  {%- if p_search_ops[i][2] > 0 -%}
+    "name": "knn-recall-{{p_search_ops[i][0]}}-{{p_search_ops[i][1]}}-{{p_search_ops[i][2]}}"
+  {%- else -%}
+    "name": "knn-recall-{{p_search_ops[i][0]}}-{{p_search_ops[i][1]}}"
+  {%- endif -%},
+  "operation-type": "knn-recall",
+  "param-source": "knn-recall-param-source",
+  "k": {{p_search_ops[i][0]}},
+  "num-candidates": {{p_search_ops[i][1]}},
+  "num-rescore": {{p_search_ops[i][2]}},
+  "include-in-reporting": false
+}
+{%- endfor %}

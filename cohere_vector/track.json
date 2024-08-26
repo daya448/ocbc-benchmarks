@@ -5,8 +5,8 @@
   "description": "Benchmark for vector search with Cohere Wikipedia data",
   "indices": [
     {
-      "name": "cohere",
-      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+      "name": "vdb910-cohere",
+      "body": "index-{{ mapping_type | default("vectors-with-text") }}-mapping.json"
     }
   ],
   "corpora": [

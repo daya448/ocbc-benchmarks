@@ -19,6 +19,14 @@
   "ingest-percentage": {{initial_indexing_ingest_percentage | default(100)}}
 },
 {
+  "name": "index-benchmark",
+  "operation-type": "bulk",
+  "warmup-time-period": 300,
+  "time-period": 1800,
+  "corpora": "openai-initial-indexing",
+  "bulk-size": {{initial_indexing_bulk_size | default(30)}}
+},
+{
   "name": "parallel-documents-indexing",
   "operation-type": "bulk",
   "corpora": "openai-parallel-indexing",
@@ -31,6 +39,13 @@
   "param-source": "knn-param-source",
   "k": 10,
   "num-candidates": 100
+},
+{
+    "name": "hybrid-search-10-100",
+    "operation-type": "search",
+    "param-source": "hybrid-param-source",
+    "k": 10,
+    "num-candidates": 100
 },
 {
   "name": "knn-search-100-1000",

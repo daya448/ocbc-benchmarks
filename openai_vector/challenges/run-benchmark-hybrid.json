@@ -1,0 +1,58 @@
+{
+    "name": "run-benchmark-hybrid",
+    "default": false,
+    "description": "Challenge to close, restore, and benchmark index with specified operations.",
+    "schedule": [
+      {
+        "name": "close-benchmark-index",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/vdb910-openai/_close",
+          "method": "POST"
+        }
+      },
+      {
+        "name": "restore-snapshot",
+        "operation": {
+          "operation-type": "raw-request",
+          "path": "/_snapshot/vdb910_benchmarks_backup_repo/vdb910-openai/_restore",
+          "method": "POST",
+          "body": {
+            "indices": "vdb910-openai"
+          }
+        }
+      },
+      {
+        "name": "check-cluster-health",
+        "operation": {
+          "operation-type": "cluster-health",
+          "request-params": {
+            "wait_for_status": "green",
+            "wait_for_active_shards": "all"
+          },
+          "retry-until-success": true
+        }
+      },
+      {
+        "name": "wait-until-merges-finish-index",
+        "operation": {
+          "operation-type": "index-stats",
+          "index": "_all",
+          "condition": {
+            "path": "_all.total.merges.current",
+            "expected-value": 0
+          },
+          "retry-until-success": true,
+          "include-in-reporting": false
+        }
+      },
+      {
+        "name": "vector-search-hybrid-10-100-multiple-clients",
+        "operation": "hybrid-search-10-100",
+        "warmup-time-period": 120,
+        "target-throughput": 120,
+        "time-period": 1800,
+        "clients": {{ standalone_search_clients | default(4) | int }}
+      }
+    ]
+  }

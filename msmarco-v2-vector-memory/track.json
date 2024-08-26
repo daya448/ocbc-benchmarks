@@ -1,0 +1,122 @@
+{% import "rally.helpers" as rally with context %}
+
+{
+  "version": 2,
+  "description": "Benchmark for vector search with msmarco-v2 passage data",
+  "dependencies": [
+    "pytrec_eval==0.5",
+    "numpy"
+  ],
+  "indices": [
+    {
+      "name": "vdb910-memory-benchmark",
+      "body": "index-{{ mapping_type | default("vectors-only") }}-mapping.json"
+    }
+  ],
+  "corpora": [
+    {
+      "name": "msmarco-v2-initial-indexing",
+      "base-url": "https://rally-tracks.elastic.co/cohere-msmarco-v2-embed-english-v3",
+      "documents": [
+        {
+          "source-file": "cohere-documents-01.json.bz2",
+          "document-count": 3000000,
+          "compressed-bytes": 24341521883,
+          "uncompressed-bytes": 69370756479
+        },
+        {
+          "source-file": "cohere-documents-02.json.bz2",
+          "document-count": 3000000,
+          "compressed-bytes": 24344084315,
+          "uncompressed-bytes": 69372610608
+        }
+      ]
+    },
+    {
+        "name": "msmarco-memory-1",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-1.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23127879759
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-2",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-2.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122493461
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-3",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-3.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23107562678
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-4",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-4.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23118698650
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-5",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-5.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23144534764
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-6",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-6.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23124335094
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-7",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-7.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122395641
+            }
+        ]
+    },
+    {
+        "name": "msmarco-memory-8",
+        "documents": [
+            {
+                "source-file": "msmarco-memory-documents-8.json",
+                "document-count": 1000000,
+                "uncompressed-bytes": 23122666870
+            }
+        ]
+    }
+  ],
+  "operations": [
+    {{ rally.collect(parts="operations/*.json") }}
+  ],
+  "challenges": [
+    {{ rally.collect(parts="challenges/*.json") }}
+  ]
+}

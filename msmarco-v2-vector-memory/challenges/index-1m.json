@@ -1,0 +1,18 @@
+{
+    "name": "index-1m",
+    "default": false,
+    "description": "Add 1m docs before next search",
+    "schedule": [
+        {
+            "name": "incremental-load-1M",
+            "operation": "incremental-load-{{ incremental_iteration | default(1) | int }}",
+            "clients": {{ initial_indexing_bulk_indexing_clients | default(2) | int }}
+        },
+        {
+        "name": "refresh-after-incremental-load-1M",
+        "operation": {
+          "operation-type": "refresh"
+        }
+      }
+    ]
+  }
